@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1055502992257",
+    "firebase_url": "https://shop192.firebaseio.com",
+    "project_id": "shop192",
+    "storage_bucket": "shop192.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055502992257:android:4ec786c0cb41fbe3115e80",
+        "android_client_info": {
+          "package_name": "org.wit.shop19"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055502992257-folfogaataju66kqnnffk6tsupd3fhlu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.wit.shop19",
+            "certificate_hash": "8f89db516843491ae60a062298f111e162d31613"
+          }
+        },
+        {
+          "client_id": "1055502992257-tq1mdk5cu9h6areqpcd6tdh1664vfcas.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5gdHfEzYzSJSz_WuRfZXTCBoRrIZr1J8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055502992257-tq1mdk5cu9h6areqpcd6tdh1664vfcas.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
