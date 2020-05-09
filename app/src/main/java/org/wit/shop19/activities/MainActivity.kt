@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             Log.w(TAG, "Signed out of google")
         }
     }
-
+////////////// did not use this part
     private fun revokeAccess() {
         // Firebase sign out
         firebaseAuth!!.signOut()

@@ -1,9 +1,11 @@
 package org.wit.shop19.main
 
+
 import android.app.Application
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.info
 import org.wit.shop19.models.PlacemarkJSONStore
+import org.wit.shop19.models.PlacemarkMemStore
 import org.wit.shop19.models.PlacemarkStore
 
 class MainApp : Application(), AnkoLogger {
@@ -13,6 +15,6 @@ class MainApp : Application(), AnkoLogger {
     override fun onCreate() {
         super.onCreate()
         placemarks = PlacemarkJSONStore(applicationContext)
-        info("Placemark Application started")
+        info("Placemark started")
     }
 }

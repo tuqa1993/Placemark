@@ -13,27 +13,29 @@ import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.toast
 import org.wit.shop19.R
 import org.wit.shop19.helpers.readImage
+import org.wit.shop19.helpers.showImagePicker
+import org.wit.shop19.helpers.readImage
 import org.wit.shop19.helpers.readImageFromPath
 import org.wit.shop19.helpers.showImagePicker
 import org.wit.shop19.main.MainApp
 import org.wit.shop19.models.Location
+import org.wit.shop19.models.Location2
 import org.wit.shop19.models.PlacemarkModel
 
 class TescoActivity : AppCompatActivity(), AnkoLogger {
 
     var placemark = PlacemarkModel()
     var edit = false
-    lateinit var app: MainApp
     val IMAGE_REQUEST = 1
     val LOCATION_REQUEST = 2
+
     //var location = Location(52.245696, -7.139102, 15f)
+    lateinit var app: MainApp
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tesco)
 
-        toolbarAdd.title = title
-        setSupportActionBar(toolbarAdd)
         info("Placemark Activity started..")
 
         chooseImage.setOnClickListener {
@@ -42,27 +44,21 @@ class TescoActivity : AppCompatActivity(), AnkoLogger {
 
         app = application as MainApp
 
-//    toolbar.title = title
-//    setSupportActionBar(toolbar)
-
         if (intent.hasExtra("placemark_edit")) {
             edit = true
-            btnAdd.setText(R.string.save_placemark)
             placemark = intent.extras?.getParcelable<PlacemarkModel>("placemark_edit")!!
             placemarkTitle.setText(placemark.title)
             description.setText(placemark.description)
             placemarkImage.setImageBitmap(readImageFromPath(this, placemark.image))
-
-            if (placemark.image != null) {
-                chooseImage.setText(R.string.change_placemark_image)
-            }
+            btnAdd.setText(R.string.save_placemark)
         }
-
+///////////// set click listener for the feilds
         btnAdd.setOnClickListener() {
             placemark.title = placemarkTitle.text.toString()
             placemark.description = description.text.toString()
             if (placemark.title.isEmpty()) {
-                toast(R.string.enter_placemark_title)
+                /////// just changed the string into eter your name
+                toast(R.string.enter_your_name_title)
             } else {
                 if (edit) {
                     app.placemarks.update(placemark.copy())
@@ -75,22 +71,29 @@ class TescoActivity : AppCompatActivity(), AnkoLogger {
             finish()
         }
 
-
         placemarkLocation.setOnClickListener {
-            val location = Location(52.245696, -7.139102, 15f)
+///// give the locations info intreduced in model values
+            val location = Location(52.250210, -7.136998, 15f)
+
+
             if (placemark.zoom != 0f) {
-                location.lat =  placemark.lat
+                location.lat = placemark.lat
                 location.lng = placemark.lng
                 location.zoom = placemark.zoom
-            }
-            startActivityForResult(intentFor<MapsActivity>().putExtra("location", location), LOCATION_REQUEST)
-        }
+            }//////// mark the marker with location name to be showed
+            startActivityForResult(
+                intentFor<MapsActivity>().putExtra("location", location),
+                LOCATION_REQUEST
+            )
 
+        }
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.placemark_menu, menu)
+        menuInflater.inflate(R.menu.menu_placemark, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.item_cancel -> {
@@ -103,6 +106,7 @@ class TescoActivity : AppCompatActivity(), AnkoLogger {
         }
         return super.onOptionsItemSelected(item)
     }
+////// reuest an image to uplode
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
@@ -110,9 +114,10 @@ class TescoActivity : AppCompatActivity(), AnkoLogger {
                 if (data != null) {
                     placemark.image = data.getData().toString()
                     placemarkImage.setImageBitmap(readImage(this, resultCode, data))
-                    chooseImage.setText(R.string.change_placemark_image)
+                    //Change the change place mark image to list image from strings
+                    chooseImage.setText(R.string.change_list_image)
                 }
-            }
+            }//////////////////request location to upload
             LOCATION_REQUEST -> {
                 if (data != null) {
                     val location = data.extras?.getParcelable<Location>("location")
@@ -121,12 +126,11 @@ class TescoActivity : AppCompatActivity(), AnkoLogger {
                         placemark.lng = location.lng
                         placemark.zoom = location.zoom
                     }
-
                 }
             }
+
         }
     }
-
-
 }
+
 

@@ -44,4 +44,3 @@ class PlacemarkMemStore : PlacemarkStore, AnkoLogger {
         placemarks.forEach { info("${it}") }
     }
 }
-

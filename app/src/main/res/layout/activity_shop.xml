@@ -14,16 +14,14 @@
         android:textColor="#000000"
         android:textSize="25sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="114dp"
-         />
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="150dp" />
 
     <ImageButton
         android:id="@+id/my_image_button"
         android:layout_width="260dp"
         android:layout_height="86dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+
         android:src="@drawable/tesco"
         tools:layout_editor_absoluteX="93dp"
         tools:layout_editor_absoluteY="235dp" />

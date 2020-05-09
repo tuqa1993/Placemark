@@ -9,7 +9,6 @@ import org.wit.shop19.R
 import org.wit.shop19.helpers.readImageFromPath
 import org.wit.shop19.models.PlacemarkModel
 
-
 interface PlacemarkListener {
     fun onPlacemarkClick(placemark: PlacemarkModel)
 }
@@ -38,7 +37,7 @@ class PlacemarkAdapter constructor(
 
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(placemark: PlacemarkModel, listener : PlacemarkListener) {
+        fun bind(placemark: PlacemarkModel, listener: PlacemarkListener) {
             itemView.placemarkTitle.text = placemark.title
             itemView.description.text = placemark.description
             itemView.imageIcon.setImageBitmap(readImageFromPath(itemView.context, placemark.image))

@@ -3,14 +3,12 @@ package org.wit.shop19.helpers
 import android.content.Context
 import android.util.Log
 import java.io.*
-import java.io.IOException
 
 fun write(context: Context, fileName: String, data: String) {
     try {
         val outputStreamWriter = OutputStreamWriter(context.openFileOutput(fileName, Context.MODE_PRIVATE))
         outputStreamWriter.write(data)
         outputStreamWriter.close()
-        Log.e("Success: ", "File created & written" );
     } catch (e: Exception) {
         Log.e("Error: ", "Cannot read file: " + e.toString());
     }

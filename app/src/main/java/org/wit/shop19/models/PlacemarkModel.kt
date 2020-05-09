@@ -1,6 +1,5 @@
 package org.wit.shop19.models
 
-
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
@@ -14,6 +13,13 @@ interface PlacemarkStore {
 data class Location(var lat: Double = 0.0,
                     var lng: Double = 0.0,
                     var zoom: Float = 0f) : Parcelable
+
+/////////////////////////////////////////////// additional
+@Parcelize
+data class Location2(var lat: Double = 0.0,
+                    var lng: Double = 0.0,
+                    var zoom: Float = 0f) : Parcelable
+////////////////////////////////////////////////////
 @Parcelize
 data class PlacemarkModel(var id: Long = 0,
                           var title: String = "",

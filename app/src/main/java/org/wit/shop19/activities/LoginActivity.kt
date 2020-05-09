@@ -22,13 +22,14 @@ class LoginActivity : AppCompatActivity() {
     private var firebaseAuth: FirebaseAuth? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ////// link to login activity page
         setContentView(R.layout.activity_login)
         val signInButton = findViewById<SignInButton>(R.id.sign_in_button)
         signInButton.setOnClickListener { // Launch Sign In
             signInToGoogle()
         }
 
-        // Configure Google Client
+        // Configure  a Google Client
         configureGoogleClient()
     }
 
@@ -36,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
         // Configure Google Sign In
         val gso =
             GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN) // for the requestIdToken, this is in the values.xml file that
-                // is generated from your google-services.json
+                // the id token is from the downloaded google-services.json
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build()
@@ -60,12 +61,13 @@ class LoginActivity : AppCompatActivity() {
         if (currentUser != null) {
             Log.d(
                 TAG,
+                //////message to display with tht email address used to sign in
                 "Currently Signed in: " + currentUser.email
             )
             showToastMessage("Currently Logged in: " + currentUser.email)
         }
     }
-
+//////// start an activity for sign in result
     fun signInToGoogle() {
         val signInIntent = googleSignInClient!!.signInIntent
         startActivityForResult(signInIntent,
@@ -90,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
                 showToastMessage("Google Sign in Succeeded")
                 firebaseAuthWithGoogle(account)
             } catch (e: ApiException) {
-                // Google Sign In failed, update UI appropriately
+                // if Google Sign In failed update UI appropriately
                 Log.w(TAG, "Google sign in failed", e)
                 showToastMessage("Google Sign in Failed $e")
             }
@@ -129,7 +131,7 @@ class LoginActivity : AppCompatActivity() {
     private fun showToastMessage(message: String) {
         Toast.makeText(this@LoginActivity, message, Toast.LENGTH_LONG).show()
     }
-
+////////// display the name of the user on the next page
     private fun launchMainActivity(user: FirebaseUser?) {
         if (user != null) {
             MainActivity.startActivity(
